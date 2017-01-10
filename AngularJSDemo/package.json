@@ -1,0 +1,10 @@
+{
+  "name": "angular-js-demo",
+  "version": "1.0.0",
+  "description": "angular-js-demo",
+  "author": "William Han",
+  "dependencies": {
+    "angular": "1.6.1",
+    "angular-ui-grid": "4.0.2"
+  }
+}

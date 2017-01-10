@@ -1,4 +1,5 @@
-﻿var app = angular.module('app', ['ui.grid', 'ui.grid.selection']);
+﻿
+var app = angular.module('app', ['ui.grid', 'ui.grid.selection']);
 
 
 
