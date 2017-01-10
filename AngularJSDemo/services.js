@@ -12,5 +12,9 @@ app.factory('dbService', function ($http, $q, $rootScope) {
             $http.get('/Home/GetEmployees').success(deferred.resolve).error(deferred.reject);
             return deferred.promise;
         },
+        getStaticData: function ()
+        {
+            return fakeData;
+        },
     };
 });

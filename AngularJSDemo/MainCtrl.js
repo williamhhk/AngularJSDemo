@@ -3,23 +3,21 @@
     $scope.gridOptions = {
         enableRowSelection: true,
         enableRowHeaderSelection: false,
+        multiSelect : false,
+        modifierKeysToMultiSelect : false,
+        noUnselect : true,
+        //data : fakeData,
     };
 
-    $scope.gridOptions.data = fakeData;
-    //$scope.gridOptions.data = dbService.getEmployees();
+    // fake static data
+    $scope.gridOptions.data = dbService.getStaticData();
+    // From data using api call.
+    // $scope.gridOptions.data = dbService.getEmployees();
 
     $scope.requested = false;
-    $scope.gridOptions.multiSelect = false;
-    $scope.gridOptions.modifierKeysToMultiSelect = false;
-    $scope.gridOptions.noUnselect = true;
     $scope.gridOptions.onRegisterApi = function (gridApi) {
-        //set gridApi on scope
-        $scope.gridApi = gridApi;
         gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-            //var msg = 'row selected ' + row.isSelected;
-            $log.log("Row data = ");
             $log.log(row.entity);
-            //$log.log(row.entity.InstallType);
             $scope.metaData = {
                 id: row.entity.id,
                 name: row.entity.name,
@@ -37,6 +35,5 @@
         $scope.gridOptions.data.push($scope.metaData);
         $log.log($scope.metaData);
         //dbService.saveEmployeeData($scope.metaData);
-
     }
 }]);
