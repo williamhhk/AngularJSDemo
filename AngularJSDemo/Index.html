@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid.js"></script>
+    <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+    <script src="fakeData.js"></script>
+    <script src="app.js"></script>
+    <script src="MainCtrl.js"></script>
+    <script src="services.js"></script>
+
+     <div ng-app="app">
+        <br />
+        <div ng-controller="MainCtrl">
+            <div ui-grid="gridOptions" ui-grid-selection class="grid" ui-grid-pinning></div>
+            <br />
+            <div class="container">
+                <h2>Employees</h2>
+                <h5 style="color:red;">* <i>Denotes required fields.</i></h5>
+                <form class="form-horizontal" name="employeeForm" novalidate>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="lblName">Name :</label>
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="idName" name="Name" placeholder="Name" ng-model="metaData.name" required>
+                                </div>
+                                <span style="color:red" ng-show="!employeeForm.Name.$pristine && employeeForm.Name.$invalid">Name is required.</span>
+
+                            </div>
+                            <label class="control-label col-md-2" for="lblName">Country :</label>
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="idName" name="Country" placeholder="Country..." ng-model="metaData.country" required>
+                                </div>
+                                <span style="color:red" ng-show="!employeeForm.Country.$pristine && employeeForm.Country.$invalid">Country is required.</span>
+                            </div>
+                            <label class="control-label col-md-2" for="lblName">Sex :</label>
+                            <div class="col-md-2">
+                                <select id="idSex"
+                                        name="Sex"
+                                        class="form-control"
+                                        ng-model="metaData.sex"
+                                        ng-options="(item?'Male':'Female') for item in [true, false]"
+                                        required></select>
+                                <span style="color:red" ng-show="!employeeForm.Sex.$pristine && employeeForm.Sex.$invalid">Field is required.</span>
+                            </div>
+
+                            <label class="control-label col-md-2" for="lblName">Name :</label>
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="idName" name="Name" placeholder="Name" ng-model="metaData.name" required>
+                                </div>
+                                <span style="color:red" ng-show="!employeeForm.Name.$pristine && employeeForm.Name.$invalid">Name is required.</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="lblCity">City :</label>
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="idCity" name="City" placeholder="City..." ng-model="metaData.city" required>
+                                </div>
+                                <span style="color:red" ng-show="!employeeForm.City.$pristine && employeeForm.City.$invalid">Name is required.</span>
+
+                            </div>
+                            <label class="control-label col-md-2" for="lblCountry">Country :</label>
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="idState" name="State" placeholder="State..." ng-model="metaData.state" required>
+                                </div>
+                                <span style="color:red" ng-show="!employeeForm.State.$pristine && employeeForm.State.$invalid">State is required.</span>
+                            </div>
+                            <label class="control-label col-md-2" for="lblCompany">Company :</label>
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="idCompany" name="Company" placeholder="Company..." ng-model="metaData.company" required>
+                                </div>
+                                <span style="color:red" ng-show="!employeeForm.Company.$pristine && employeeForm.Company.$invalid">State is required.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-default" ng-click="saveEmployeeData()"
+                           ng-disabled="employeeForm.$invalid">
+
+                    <pre>data : {{ gridOptions.data |json}}</pre></br></br>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
