@@ -23,7 +23,8 @@
      <div ng-app="app">
         <br />
         <div ng-controller="MainCtrl">
-            <div ui-grid="gridOptions" ui-grid-selection class="grid" ui-grid-pinning></div>
+            <button class="btn btn-success" ng-click="toggleColumnFooter()">Bulk Update</button>
+            <div ui-grid="gridOptions" ui-grid-selection class="grid"></div>
             <br />
             <div class="container">
                 <h2>Employees</h2>
@@ -97,9 +98,11 @@
 
                     <input type="submit" class="btn btn-default" ng-click="saveEmployeeData()"
                            ng-disabled="employeeForm.$invalid">
+                   
+                    <pre>data : {{  gridApi.selection.getSelectedRows() |json}}</pre></br></br>
 
-                    <pre>data : {{ gridOptions.data |json}}</pre></br></br>
-
+                    <!--<pre>data : {{ gridOptions.data |json}}</pre></br></br>-->
+                    <!--<pre>data : {{ mySelected |json}}</pre></br></br>-->
 
                 </form>
             </div>

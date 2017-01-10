@@ -82,6 +82,8 @@
     <Content Include="Index.html" />
     <Content Include="MainCtrl.js" />
     <Content Include="services.js" />
+    <Content Include="templates\company.html" />
+    <Content Include="templates\custom_footer.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

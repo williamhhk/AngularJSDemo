@@ -1,13 +1,25 @@
 ﻿app.controller('MainCtrl', ['$scope', '$http', '$interval', 'uiGridConstants', '$log', 'dbService', '$timeout', function ($scope, $http, $interval, uiGridConstants, $log, dbService, $timeout) {
-    $scope.mySelectedRows = [];
+    var data = [];
+    $scope.mySelected = [];
     $scope.gridOptions = {
-        enableRowSelection: true,
-        enableRowHeaderSelection: false,
-        multiSelect : false,
-        modifierKeysToMultiSelect : false,
-        noUnselect : true,
-        //data : fakeData,
+        multiSelect: true,
+        enableSelectAll: true,
+        showGridFooter: true,
+        showColumnFooter: true,
+        enableFiltering: true,
+        columnDefs: [
+            { field: 'id', width: '13%', footerCellTemplate: '<div class="ui-grid-cell-contents"><button class="btn btn-success" ng-click="printConsole()">Bulk Update</button></div>' },
+            { field: 'name', width: '13%' },
+            { field: 'city', width: '13%' },
+            { field: 'state', width: '13%' },
+            { field: 'country', width: '13%' },
+            { name: 'customCellTemplate', field: 'company', width: '14%', footerCellTemplate: '<div class="ui-grid-cell-contents"><select ng-model="templateCompany"><option value="volvo">Volvo</option><option value="saab">Saab</option></select></div>' },
+            { field: 'favoriteNumber', width: '13%' },
+            { field: 'sex', width: '13%' },
+        ],
+        data: data,
     };
+
 
     // fake static data
     $scope.gridOptions.data = dbService.getStaticData();
@@ -16,6 +28,8 @@
 
     $scope.requested = false;
     $scope.gridOptions.onRegisterApi = function (gridApi) {
+        $scope.gridApi = gridApi;
+
         gridApi.selection.on.rowSelectionChanged($scope, function (row) {
             $log.log(row.entity);
             $scope.metaData = {
@@ -36,4 +50,15 @@
         $log.log($scope.metaData);
         //dbService.saveEmployeeData($scope.metaData);
     }
+
+    $scope.toggleColumnFooter = function () {
+        console.log("Toggle...");
+        $scope.gridOptions.showColumnFooter = !$scope.gridOptions.showColumnFooter;
+        console.log($scope.gridApi);
+        $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.OPTIONS);
+    };
+
+    $scope.printConsole = function () {
+        console.log("Toggle...");
+    };
 }]);
